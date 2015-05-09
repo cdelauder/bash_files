@@ -94,3 +94,21 @@ source ~/.git-completion.sh
 export LSCOLORS=ExGxFxdxCxDxDxaccxaeex
 # Force ls to use colors (G) and use humanized file sizes (h)
 alias ls='ls -Gh'
+
+function mix {
+  (
+    cd /Users/stupo/spoton
+    for dir in $(ls)
+    do 
+      echo "$dir"
+      if [[ ! "$dir" =~ "mixins" ]] && [[ ! "$dir" =~ "ups" ]] && [[ ! "$dir" =~ "nginx" ]]; then
+        (
+          pwd
+          cd /Users/stupo/spoton/"$dir"
+          npm install -f spoton
+        )
+      fi
+    done
+  )
+}
+export mix
